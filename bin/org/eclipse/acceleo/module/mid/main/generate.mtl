@@ -1,0 +1,48 @@
+[comment encoding = UTF-8 /]
+[module generate('http://www.eclipse.org/uml2/5.0.0/UML')]
+
+
+ [template public generateElement(aClass : Class)] 
+  [comment @main /]
+ [file (aClass.name.concat('.java'), false)]
+   public class [aClass.name.toUpperFirst()/] {
+		[for (p: Property | aClass.attribute) separator('\n')]
+		 private [p.type.name/] [p.name/];
+		[/for]
+		[comment Ham tao mac dinh/]
+		 public [aClass.name.toUpperFirst()/](){}
+		[comment Ham tao day du tham so/]
+		[for (p: Property | aClass.attribute)][/for]
+	   	 public [aClass.name.toUpperFirst()/]([for (p: Property | aClass.attribute) separator(', ')][p.type.name/] [p.name/][/for]
+		 {
+			[for (p: Property | aClass.attribute) separator('\n')]
+		     this.[p.name/] = [p.name/];
+		    [/for]
+		 }
+	 
+	    [for (p: Property | aClass.attribute) separator('\n')]
+	     public [p.type.name/] get[p.name.toUpperFirst()/]() {
+	       return this.[p.name/];
+	     }
+		 public void set[p.name.toUpperFirst()/]{
+			this.[p.name/] = [p.name/];
+		 }
+	    [/for]
+		
+	    [for (o: Operation | aClass.ownedOperation) separator('\n')]
+	     public [o.type.name/] [o.name/]() {
+	       // TODO should be implemented
+	     }
+	    [/for]
+
+		[comment Ham hien thi/]
+		 public void Output()
+		 {
+			[for (p: Property | aClass.attribute) separator('\n')]
+		     System.out.println([p.name/]);
+		   	[/for]
+		 }
+
+   }
+ [/file]
+ [/template]
