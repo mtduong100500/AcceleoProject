@@ -1,0 +1,4 @@
+- Cat dat phan mem xampp len may tinh
+- sau khi cai dat copy thu muc onlineshopping vao duong dan C:\xampp\mysql\data
+- chay xampp control panel va start apache va mysql
+
